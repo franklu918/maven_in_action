@@ -87,12 +87,24 @@ public class AccountPersistServiceImpl implements AccountPersistService {
 
     @Override
     public Account updateAccount(Account account) throws AccountPersistException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        if (readAccount(account.getId()) != null) {
+            deleteAccount(account.getId());
+            return createAccount(account);
+        }
+        return null;
     }
 
     @Override
     public void deleteAccount(String id) throws AccountPersistException {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Document doc = readDocument();
+        Element accountsEle = doc.getRootElement().element(ELEMENT_ACCOUNTS);
+        for (Element accountele : (List<Element>) accountsEle.elements()) {
+            if (accountele.elementText(ELEMENT_ACCOUNT_ID).equals(id)) {
+                accountele.detach();
+                writeDocument(doc);
+                return;
+            }
+        }
     }
 
     private Document readDocument() throws AccountPersistException {
