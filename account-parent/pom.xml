@@ -9,6 +9,11 @@
 
     <name>Account Parent</name>
 
+    <modules>
+        <module>../account-email</module>
+        <module>../account-persist</module>
+    </modules>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springfrmaework.version>2.5.6</springfrmaework.version>
