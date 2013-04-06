@@ -11,6 +11,7 @@
   <url>http://maven.apache.org</url>
 
   <modules>
+    <module>../account-parent</module>
     <module>../account-email</module>
     <module>../account-persist</module>
   </modules>
